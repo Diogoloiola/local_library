@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_201005) do
+ActiveRecord::Schema.define(version: 2022_01_10_201446) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -20,18 +20,26 @@ ActiveRecord::Schema.define(version: 2022_01_10_201005) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "book_instances", force: :cascade do |t|
+    t.datetime "due_back"
+    t.string "status"
+    t.string "imprint"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "summary"
     t.string "ISBN"
-    t.integer "user_id", null: false
+    t.integer "author_id", null: false
     t.integer "genre_id", null: false
     t.integer "language_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["genre_id"], name: "index_books_on_genre_id"
     t.index ["language_id"], name: "index_books_on_language_id"
-    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -46,7 +54,7 @@ ActiveRecord::Schema.define(version: 2022_01_10_201005) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "books", "authors"
   add_foreign_key "books", "genres"
   add_foreign_key "books", "languages"
-  add_foreign_key "books", "users"
 end

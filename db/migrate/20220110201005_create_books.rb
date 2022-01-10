@@ -4,7 +4,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :summary
       t.string :ISBN
-      t.references :user, null: false, foreign_key: true
+      t.references :author, null: false, foreign_key: true
       t.references :genre, null: false, foreign_key: true
       t.references :language, null: false, foreign_key: true
 
