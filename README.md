@@ -1,24 +1,10 @@
-# README
+## Biblioteca local
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Criando o arquivo rspce
 
-* Ruby version
+rails g rspec:install
 
-* System dependencies
+## Criando as factories
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+mkdir spec/factories
