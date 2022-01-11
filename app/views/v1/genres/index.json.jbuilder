@@ -1,1 +1,1 @@
-json.array! @v1_genres, partial: 'genre', as: :v1_genre
+json.array! @genres, partial: 'genre', as: :genre

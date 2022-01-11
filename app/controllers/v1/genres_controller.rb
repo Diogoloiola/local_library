@@ -1,6 +1,6 @@
 module V1
   class GenresController < ApplicationController
-    before_action :set_v1_genre, only: %i[show update destroy]
+    before_action :set_genre, only: %i[show update destroy]
 
     def index
       @genres = Genre.all
@@ -9,35 +9,35 @@ module V1
     def show; end
 
     def create
-      @v1_genre = Genre.new(v1_genre_params)
+      @genre = Genre.new(genre_params)
 
-      if @v1_genre.save
-        render :show, status: :created, location: @v1_genre
+      if @genre.save
+        render :show, status: :created
       else
-        render json: @v1_genre.errors, status: :unprocessable_entity
+        render json: @genre.errors, status: :unprocessable_entity
       end
     end
 
     def update
-      if @v1_genre.update(v1_genre_params)
-        render :show, status: :ok, location: @v1_genre
+      if @genre.update(genre_params)
+        render :show, status: :ok
       else
-        render json: @v1_genre.errors, status: :unprocessable_entity
+        render json: @genre.errors, status: :unprocessable_entity
       end
     end
 
     def destroy
-      @v1_genre.destroy
+      @genre.destroy
     end
 
     private
 
-    def set_v1_genre
-      @v1_genre = Genre.find(params[:id])
+    def set_genre
+      @genre = Genre.find(params[:id])
     end
 
-    def v1_genre_params
-      params.fetch(:v1_genre, {})
+    def genre_params
+      params.require(:genre).permit(:name)
     end
   end
 end
