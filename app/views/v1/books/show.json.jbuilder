@@ -1,1 +1,1 @@
-json.partial! 'book', v1_book: @book
+json.partial! 'book', book: @book

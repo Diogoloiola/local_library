@@ -39,7 +39,7 @@ module V1
     end
 
     def book_params
-      params.fetch(:book, {})
+      params.require(:book).permit(:title, :summary, :ISBN, :author_id, :language_id, :genre_id)
     end
   end
 end
