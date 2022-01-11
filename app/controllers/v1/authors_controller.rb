@@ -10,9 +10,8 @@ module V1
 
     def create
       @author = Author.new(author_params)
-
       if @author.save
-        render :show, status: :created, location: @author
+        render :show, status: :created
       else
         render json: @author.errors, status: :unprocessable_entity
       end
@@ -20,7 +19,7 @@ module V1
 
     def update
       if @author.update(author_params)
-        render :show, status: :ok, location: @author
+        render :show, status: :ok
       else
         render json: @author.errors, status: :unprocessable_entity
       end
@@ -37,7 +36,7 @@ module V1
     end
 
     def author_params
-      params.fetch(:author, {})
+      params.require(:author).permit(:name, :date_of_death, :date_of_birth)
     end
   end
 end

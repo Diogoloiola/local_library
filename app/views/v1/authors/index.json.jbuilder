@@ -1,1 +1,1 @@
-json.array! @v1_authors, partial: 'author', as: :v1_author
+json.array! @authors, partial: 'author', as: :author
