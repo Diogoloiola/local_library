@@ -1,1 +1,1 @@
-json.array! @v1_languages, partial: 'language', as: :v1_language
+json.array! @languages, partial: 'language', as: :language

@@ -12,7 +12,7 @@ module V1
       @language = Language.new(language_params)
 
       if @language.save
-        render :show, status: :created, location: @language
+        render :show, status: :created
       else
         render json: @language.errors, status: :unprocessable_entity
       end
@@ -20,7 +20,7 @@ module V1
 
     def update
       if @language.update(language_params)
-        render :show, status: :ok, location: @language
+        render :show, status: :ok
       else
         render json: @language.errors, status: :unprocessable_entity
       end
@@ -37,7 +37,7 @@ module V1
     end
 
     def language_params
-      params.fetch(:language, {})
+      params.require(:language).permit(:name)
     end
   end
 end
