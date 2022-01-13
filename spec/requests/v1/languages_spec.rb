@@ -18,7 +18,7 @@ RSpec.describe '/v1/languages', type: :request do
   describe 'GET /index' do
     it 'renders a successful response' do
       Language.create! valid_attributes
-      get v1_languages_url, headers: valid_headers, as: :json
+      get admins_v1_languages_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -35,13 +35,13 @@ RSpec.describe '/v1/languages', type: :request do
     context 'with valid parameters' do
       it 'creates a new Language' do
         expect do
-          post v1_languages_url,
+          post admins_v1_languages_url,
                params: { language: valid_attributes }, headers: valid_headers, as: :json
         end.to change(Language, :count).by(1)
       end
 
       it 'renders a JSON response with the new language' do
-        post v1_languages_url,
+        post admins_v1_languages_url,
              params: { language: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
@@ -51,13 +51,13 @@ RSpec.describe '/v1/languages', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new Language' do
         expect do
-          post v1_languages_url,
+          post admins_v1_languages_url,
                params: { language: invalid_attributes }, as: :json
         end.to change(Language, :count).by(0)
       end
 
       it 'renders a JSON response with errors for the new language' do
-        post v1_languages_url,
+        post admins_v1_languages_url,
              params: { language: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')

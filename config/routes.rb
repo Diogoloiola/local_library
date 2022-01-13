@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
-  namespace :v1, defaults: { format: :json } do
-    resources :books
-    resources :authors
-    resources :genres
-    resources :languages
+
+  mount_devise_token_auth_for 'Admin', at: 'auth'
+
+  namespace :admins, defaults: { format: :json } do
+    namespace :v1 do
+      resources :books
+      resources :authors
+      resources :genres
+      resources :languages
+    end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

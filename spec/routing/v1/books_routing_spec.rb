@@ -1,29 +1,29 @@
 require 'rails_helper'
 
-RSpec.describe V1::BooksController, type: :routing do
+RSpec.describe Admins::V1::BooksController, type: :routing do
   describe 'routing' do
     it 'routes to #index' do
-      expect(get: '/v1/books').to route_to('v1/books#index', format: :json)
+      expect(get: 'admins/v1/books').to route_to('admins/v1/books#index', format: :json)
     end
 
     it 'routes to #show' do
-      expect(get: '/v1/books/1').to route_to('v1/books#show', id: '1', format: :json)
+      expect(get: 'admins/v1/books/1').to route_to('admins/v1/books#show', id: '1', format: :json)
     end
 
     it 'routes to #create' do
-      expect(post: '/v1/books').to route_to('v1/books#create', format: :json)
+      expect(post: 'admins/v1/books').to route_to('admins/v1/books#create', format: :json)
     end
 
     it 'routes to #update via PUT' do
-      expect(put: '/v1/books/1').to route_to('v1/books#update', id: '1', format: :json)
+      expect(put: 'admins/v1/books/1').to route_to('admins/v1/books#update', id: '1', format: :json)
     end
 
     it 'routes to #update via PATCH' do
-      expect(patch: '/v1/books/1').to route_to('v1/books#update', id: '1', format: :json)
+      expect(patch: 'admins/v1/books/1').to route_to('admins/v1/books#update', id: '1', format: :json)
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/v1/books/1').to route_to('v1/books#destroy', id: '1', format: :json)
+      expect(delete: 'admins/v1/books/1').to route_to('admins/v1/books#destroy', id: '1', format: :json)
     end
   end
 end
