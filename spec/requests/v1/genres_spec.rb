@@ -12,116 +12,116 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/v1/genres", type: :request do
+RSpec.describe '/v1/genres', type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # V1::Genre. As you add validations to V1::Genre, be sure to
+  # Genre. As you add validations to Genre, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip({ name: 'Comédia' })
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip({ genre: {} })
+  end
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # V1::GenresController, or in your router and rack
+  # GenresController, or in your router and rack
   # middleware. Be sure to keep this updated too.
-  let(:valid_headers) {
+  let(:valid_headers) do
     {}
-  }
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      V1::Genre.create! valid_attributes
+  describe 'GET /index' do
+    it 'renders a successful response' do
+      Genre.create! valid_attributes
       get v1_genres_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      genre = V1::Genre.create! valid_attributes
-      get v1_genre_url(v1_genre), as: :json
+  describe 'GET /show' do
+    it 'renders a successful response' do
+      genre = Genre.create! valid_attributes
+      get genre_url(genre), as: :json
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new V1::Genre" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Genre' do
+        expect do
           post v1_genres_url,
-               params: { v1_genre: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(V1::Genre, :count).by(1)
+               params: { genre: valid_attributes }, headers: valid_headers, as: :json
+        end.to change(Genre, :count).by(1)
       end
 
-      it "renders a JSON response with the new v1_genre" do
+      it 'renders a JSON response with the new genre' do
         post v1_genres_url,
-             params: { v1_genre: valid_attributes }, headers: valid_headers, as: :json
+             params: { genre: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new V1::Genre" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new Genre' do
+        expect do
           post v1_genres_url,
-               params: { v1_genre: invalid_attributes }, as: :json
-        }.to change(V1::Genre, :count).by(0)
+               params: { genre: invalid_attributes }, as: :json
+        end.to change(Genre, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new v1_genre" do
+      it 'renders a JSON response with errors for the new genre' do
         post v1_genres_url,
-             params: { v1_genre: invalid_attributes }, headers: valid_headers, as: :json
+             params: { genre: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq('application/json')
       end
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested v1_genre" do
-        genre = V1::Genre.create! valid_attributes
-        patch v1_genre_url(v1_genre),
-              params: { v1_genre: new_attributes }, headers: valid_headers, as: :json
+      it 'updates the requested genre' do
+        genre = Genre.create! valid_attributes
+        patch genre_url(genre),
+              params: { genre: new_attributes }, headers: valid_headers, as: :json
         genre.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "renders a JSON response with the v1_genre" do
-        genre = V1::Genre.create! valid_attributes
-        patch v1_genre_url(v1_genre),
-              params: { v1_genre: new_attributes }, headers: valid_headers, as: :json
+      it 'renders a JSON response with the genre' do
+        genre = Genre.create! valid_attributes
+        patch genre_url(genre),
+              params: { genre: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the v1_genre" do
-        genre = V1::Genre.create! valid_attributes
-        patch v1_genre_url(v1_genre),
-              params: { v1_genre: invalid_attributes }, headers: valid_headers, as: :json
+    context 'with invalid parameters' do
+      it 'renders a JSON response with errors for the genre' do
+        genre = Genre.create! valid_attributes
+        patch genre_url(genre),
+              params: { genre: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq('application/json')
       end
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested v1_genre" do
-      genre = V1::Genre.create! valid_attributes
-      expect {
-        delete v1_genre_url(v1_genre), headers: valid_headers, as: :json
-      }.to change(V1::Genre, :count).by(-1)
+  describe 'DELETE /destroy' do
+    it 'destroys the requested genre' do
+      genre = Genre.create! valid_attributes
+      expect do
+        delete genre_url(genre), headers: valid_headers, as: :json
+      end.to change(Genre, :count).by(-1)
     end
   end
 end
