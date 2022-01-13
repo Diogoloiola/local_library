@@ -1,6 +1,6 @@
 module Admins
   module V1
-    class GenresController < ApplicationController
+    class GenresController < ApiController
       before_action :set_genre, only: %i[show update destroy]
 
       def index

@@ -1,6 +1,6 @@
 module Admins
   module V1
-    class AuthorsController < ApplicationController
+    class AuthorsController < ApiController
       before_action :set_author, only: %i[show update destroy]
 
       def index

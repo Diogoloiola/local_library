@@ -1,6 +1,6 @@
 module Admins
   module V1
-    class LanguagesController < ApplicationController
+    class LanguagesController < ApiController
       before_action :set_language, only: %i[show update destroy]
 
       def index

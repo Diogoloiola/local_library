@@ -1,6 +1,6 @@
 module Admins
   module V1
-    class BooksController < ApplicationController
+    class BooksController < ApiController
       before_action :set_book, only: %i[show update destroy]
 
       def index
