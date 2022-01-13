@@ -12,7 +12,7 @@ module V1
       @book = Book.new(book_params)
 
       if @book.save
-        render :show, status: :created, location: @book
+        render :show, status: :created
       else
         render json: @book.errors, status: :unprocessable_entity
       end
@@ -20,7 +20,7 @@ module V1
 
     def update
       if @book.update(book_params)
-        render :show, status: :ok, location: @book
+        render :show, status: :ok
       else
         render json: @book.errors, status: :unprocessable_entity
       end
